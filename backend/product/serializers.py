@@ -70,10 +70,3 @@ class AuthTokenSerializer(serializers.Serializer):
         return attrs
 
 
-
-
-class PreferencesSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model=Preferences
-        fields=('name','id',)
