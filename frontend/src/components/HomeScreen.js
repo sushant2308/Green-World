@@ -1,15 +1,14 @@
 import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-function All({setsign}) {
-    var img=require('./h.mp4');
-    if(localStorage.getItem('token')) setsign(true);
+function HomeScreen() {
+    var img=require('./Images/h.mp4');
     const [Data,setData] = useState([]);
     useEffect(() => {
         const fetchData = async ()=>{
         try {
           let data=[]
-          const res = await axios.get(`http://127.0.0.1:8000/api/allproducts`);
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/allproducts`);
           for(const dataobj of res.data){
               data.push(dataobj);
             
@@ -25,12 +24,11 @@ function All({setsign}) {
     fetchData();
   
     },[]);
-    console.log(Data);
     return (
       <div>
         <header>
           <div className="overlay"></div>
-          <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+          <video playsInline="playsinline" autoPlay="autoplay" muted="muted" loop="loop">
             <source src={img.default} type="video/mp4"/>
           </video>
           <div className="container h-100">
@@ -52,7 +50,7 @@ function All({setsign}) {
                     <div className="col-md-4" key={i}>
                     <div className="card-box-a card-shadow">
                       <div className="img-box-a">
-                        <img src={"http://127.0.0.1:8000"+item.image}  className="img-a img-fluid" alt=""/>
+                        <img src={process.env.REACT_APP_BACKEND_URL+item.image}  className="img-a img-fluid" alt=""/>
                       </div>
                       <div className="card-overlay">
                         <div className="card-overlay-a-content">
@@ -82,4 +80,4 @@ function All({setsign}) {
         
     );
 }
-export default All;
+export default HomeScreen;

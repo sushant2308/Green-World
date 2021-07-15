@@ -1,9 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-function Navbar({sign,setsign}) {
-  function logout(){
+import { loginState,logout } from '../../features/userSlice'
+import { useSelector,useDispatch } from 'react-redux'
+function Navbar() {
+  const isloggedin= useSelector(loginState)
+  const dispatch= useDispatch();
+  function loggedout(){
       localStorage.removeItem('token');
-      setsign(false);
+      dispatch(logout())
   }
     return (
         <div>
@@ -35,7 +39,7 @@ function Navbar({sign,setsign}) {
                     <li className="nav-item">
                       <Link className="nav-link" to="/category/Homeware">Homeware</Link>
                     </li>
-                    {sign ?
+                    {isloggedin ?
                           <li className="nav-item">
                           <Link className="nav-link" to="/profile">Account</Link>
                           </li>
@@ -50,9 +54,9 @@ function Navbar({sign,setsign}) {
                           </div>
                         </li>
                     }
-                    {sign ?
+                    {isloggedin ?
                           <li className="nav-item">
-                          <Link className="nav-link" onClick={logout}>Logout</Link>
+                          <Link className="nav-link" onClick={loggedout}>Logout</Link>
                           </li>
                           :
                           <li className="nav-item">

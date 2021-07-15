@@ -25,7 +25,7 @@ class Buyer extends Component {
         form_data.append('phone_no', this.state.phone_no);
         form_data.append('address', this.state.address);
         form_data.append('is_seller', this.state.is_seller);
-        let url = 'http://127.0.0.1:8000/api/create/';
+        let url = `${process.env.REACT_APP_BACKEND_URL}/api/create/`;
         axios.post(url, form_data, {
           headers: {
             'content-type': 'multipart/form-data'

@@ -8,22 +8,22 @@
     min-height: 100vh;
   }
   .bg-image4 {
-    background-image: url('./product.jpg');
+    background-image: url('./Images/product.jpg');
     background-size: cover;
     background-position: center;
   }
   .bg-image {
-    background-image: url('./login.jpg');
+    background-image: url('./Images/login.jpg');
     background-size: cover;
     background-position: center;
   }
   .bg-image1 {
-    background-image: url('./buyer.jpg');
+    background-image: url('./Images/buyer.jpg');
     background-size: cover;
     background-position: center;
   }
   .bg-image2 {
-    background-image: url('./Seller.jpg');
+    background-image: url('./Images/Seller.jpg');
     background-size: cover;
     background-position: center;
   }

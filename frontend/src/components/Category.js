@@ -1,15 +1,15 @@
 import React,{useState,useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {Link,useParams} from 'react-router-dom';
 import axios from 'axios';
-const Category=(props)=> {
-    const name=props.match.params.id;
-    var img=require('./h.mp4');
+const Category=()=> {
+    const name=useParams();
+    var img=require('./Images/h.mp4');
     const [Data,setData] = useState([]);
     useEffect(() => {
         const fetchData = async ()=>{
         try {
           let data=[]
-          const res = await axios.get(`http://127.0.0.1:8000/api/category_wise/${name}`);
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/category_wise/${name}`);
           for(const dataobj of res.data){
               data.push(dataobj);
             
@@ -25,7 +25,6 @@ const Category=(props)=> {
     fetchData();
   
     },[]);
-    console.log(Data);
     return (
       <div>
         <header>
@@ -52,7 +51,8 @@ const Category=(props)=> {
                     <div className="col-md-4" key={i}>
                     <div className="card-box-a card-shadow">
                       <div className="img-box-a">
-                        <img src={"http://127.0.0.1:8000"+item.image}  className="img-a img-fluid" alt=""/>
+                        <img src={                        <img src={process.env.REACT_APP_BACKEND_URL+item.image}  className="img-a img-fluid" alt=""/>
++item.image}  className="img-a img-fluid" alt=""/>
                       </div>
                       <div className="card-overlay">
                         <div className="card-overlay-a-content">

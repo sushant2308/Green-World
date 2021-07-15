@@ -2,10 +2,13 @@ import React,{useState} from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import './sigin.css';
+import { login } from '../../features/userSlice'
+import { useDispatch } from 'react-redux'
 function Login() {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
     const [redirect, setredirect] = useState(null)
+    const dispatch= useDispatch();
       const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email);
@@ -13,7 +16,7 @@ function Login() {
         let form_data = new FormData();
         form_data.append('email', email);
         form_data.append('password', password);
-        let url = 'http://127.0.0.1:8000/api/token/';
+        let url = `${process.env.REACT_APP_BACKEND_URL}/api/token/`;
         axios.post(url, form_data, {
           headers: {
             'content-type': 'multipart/form-data'
@@ -21,6 +24,7 @@ function Login() {
         })
             .then(res => {
               localStorage.setItem('token',res.data.token);
+              dispatch(login())
               setredirect("/");
             })
             .catch(err =>alert("Wrong email or password"))

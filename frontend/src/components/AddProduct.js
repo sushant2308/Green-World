@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-class Form extends Component {
+class AddProduct extends Component {
     state = {
         name: '',
         brand: '',
@@ -30,7 +30,7 @@ class Form extends Component {
         form_data.append('description', this.state.description);
         form_data.append('price', this.state.price);
         form_data.append('image', this.state.image, this.state.image.name);
-        let url = 'http://127.0.0.1:8000/api/product_add/';
+        let url = `${process.env.REACT_APP_BACKEND_URL}/api/product_add/`;
         let token=localStorage.getItem('token')
         axios.post(url, form_data, {
           headers: {
@@ -105,4 +105,4 @@ class Form extends Component {
     }
 
 }
-export default Form;
+export default AddProduct;

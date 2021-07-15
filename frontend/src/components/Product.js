@@ -1,16 +1,15 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link,useParams} from 'react-router-dom';
 const Product=(props)=> {
-    const name=props.match.params.id;
-    var img=require('./h.mp4');
+    const name=useParams();
     const [Data,setData] = useState({});
     const [brought,setbrought]=useState(false);
     useEffect(() => {
         const fetchData = async ()=>{
         try {
          
-          const res = await axios.get(`http://127.0.0.1:8000/api/product_detail/${name}`);
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/product_actions/${name}`);
          
           setData(res.data);
            
@@ -26,14 +25,13 @@ const Product=(props)=> {
     function purchase(){
       if(localStorage.getItem('token')){
         let token=localStorage.getItem('token')
-        let url = `http://127.0.0.1:8000/api/purchase/${Data.id}/`;
+        let url = `${process.env.REACT_APP_BACKEND_URL}/api/purchase/${Data.id}/`;
         console.log(token);
         const res = axios.get(url, {
           headers: {
             'Authorization': `token ${token}`
           }
-        })
-            .then(res => {
+        }).then(res => {
               console.log(res);
               setbrought(true);
             })
@@ -70,7 +68,7 @@ const Product=(props)=> {
             <div className="container">
               <div className="row">
                 <div className="col-md-6 col-lg-6 col-sm-12">
-                  <img src={"http://127.0.0.1:8000"+Data.image} style={{maxWidth:"100%",maxHeight:"100%"}} alt=""/>
+                  <img src={process.env.REACT_APP_BACKEND_URL+Data.image} style={{maxWidth:"100%",maxHeight:"100%"}} alt=""/>
                 </div>
                 <div className="col-md-6 col-lg-6 col-sm-12">
                       <div className="property-price d-flex justify-content-center foo">
