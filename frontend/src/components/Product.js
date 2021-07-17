@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import {Link,useParams} from 'react-router-dom';
-const Product=(props)=> {
+const Product=()=> {
     const name=useParams();
     const [Data,setData] = useState({});
     const [brought,setbrought]=useState(false);

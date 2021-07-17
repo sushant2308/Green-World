@@ -1,14 +1,13 @@
 import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-function Profile({setsign}) {
+function Profile() {
     const [Data, setData] = useState({})
-    if(localStorage.getItem('token')) setsign(true);
     useEffect(() => {
         const fetchData = async ()=>{
         try {
           let token=localStorage.getItem('token')
-          const res = await axios.get(`http://127.0.0.1:8000/api/me`,{
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/me`,{
             headers: {
                 'Authorization': `token ${token}`
               }
@@ -55,6 +54,8 @@ function Profile({setsign}) {
                                             <div className="card-body-a">
                                                 <div className="price-box d-flex">
                                                 <span className="price-a">Price | Rs {item.price}</span>
+                                                <span className="price-a"><Link to={"/editproduct/"+item.id}>Edit
+                                                    </Link></span>
                                                 </div>
                                             </div>
                                             </div>

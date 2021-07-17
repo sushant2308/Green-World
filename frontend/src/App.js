@@ -28,6 +28,7 @@ function App() {
                   <Route path='/buyer-signup/' component={()=><Buyer/>} exact/>
                   <Route path='/profile/' component={()=><Profile/>} exact/>
                   <Route path='/addproduct/' component={()=><AddProduct/>} exact/>
+                  <Route path='/editproduct/:id' children={<AddProduct/>} exact/>
             </Switch>
           </Router>
 
