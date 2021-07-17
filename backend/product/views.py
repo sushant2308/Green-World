@@ -5,8 +5,8 @@ from django.shortcuts import redirect, render,get_object_or_404
 from rest_framework.settings import api_settings
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import UserSerializer, AuthTokenSerializer,ProductSerializer,PreferencesSerializer
-from .models import Product,Preferences,purchase
+from .serializers import UserSerializer, AuthTokenSerializer,ProductSerializer
+from .models import Product,purchase
 
 
 
@@ -51,25 +51,28 @@ def product_all(request):
 @api_view(['GET','PUT','DELETE' ])
 def product_actions(request,slug):
     product=Product.objects.get(id=slug)
-    if (request.user==product.user):
-        if(request.method=='GET'):
-            serializer=ProductSerializer(product)
+    if(request.method=='GET'):
+        serializer=ProductSerializer(product)
 
-            return Response(serializer.data)
+        return Response(serializer.data)
 
-        elif(request.method=='PUT'):
+    elif(request.method=='PUT'):
+        if (request.user==product.seller):
             serializer=ProductSerializer(product,data=request.data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data)
-
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
 
-        elif(request.method=='DELETE'):
-            product.delete()
-            return Response({'message': 'Product was deleted successfully!'},status=status.HTTP_204_NO_CONTENT)    
+        return Response({'message': 'Unauthorised'}, status=status.HTTP_400_BAD_REQUEST)  
 
-    return Response({'message': 'You are not authorized for this operation!'}, status=status.HTTP_400_BAD_REQUEST)  
+    elif(request.method=='DELETE'):
+        if (request.user==product.seller):
+            product.delete()
+            return Response({'message': 'Product was deleted successfully!'},status=status.HTTP_204_NO_CONTENT)  
+
+        return Response({'message': 'Unauthorised'}, status=status.HTTP_400_BAD_REQUEST)        
+ 
 
 
 @api_view(['POST'])
@@ -90,10 +93,10 @@ def add_product(request):
 
 
 @api_view(['GET',],)
-def purchase(request,slug):
+def purchase_product(request,slug):
     product=get_object_or_404(Product,id=slug)
     user=request.user
-    purchas=purchase(buyer=user ,product=product)
+    purchas=purchase(buyer=user,product=product)
     purchas.save()
     product.sold=True
     product.save()

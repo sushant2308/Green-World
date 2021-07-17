@@ -1,10 +1,12 @@
 import React,{useState,useEffect} from 'react';
-import {Link,useParams} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
-const Category=()=> {
-    const name=useParams();
+
+function Category({ match }) {
+    const name=match.params.id
     var img=require('./Images/h.mp4');
     const [Data,setData] = useState([]);
+    console.log(name)
     useEffect(() => {
         const fetchData = async ()=>{
         try {
@@ -24,12 +26,12 @@ const Category=()=> {
 
     fetchData();
   
-    },[]);
+    },[name]);
     return (
       <div>
         <header>
           <div className="overlay"></div>
-          <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+          <video playsInline="playsinline" autoPlay="autoplay" muted="muted" loop="loop">
             <source src={img.default} type="video/mp4"/>
           </video>
           <div className="container h-100">
@@ -51,8 +53,8 @@ const Category=()=> {
                     <div className="col-md-4" key={i}>
                     <div className="card-box-a card-shadow">
                       <div className="img-box-a">
-                        <img src={                        <img src={process.env.REACT_APP_BACKEND_URL+item.image}  className="img-a img-fluid" alt=""/>
-+item.image}  className="img-a img-fluid" alt=""/>
+                        <img src={process.env.REACT_APP_BACKEND_URL+item.image}  className="img-a img-fluid" alt=""/>
+
                       </div>
                       <div className="card-overlay">
                         <div className="card-overlay-a-content">

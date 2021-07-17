@@ -89,7 +89,7 @@ class AddProduct extends Component {
                             <input type="file" id="image" accept="image/png, image/jpeg"  onChange={this.handleImageChange} required/>
                             <label for="image">Upload Product's Image</label>
                             </div>
-                            <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Register</button>
+                            <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Add</button>
         
                         </form>
                         </div>

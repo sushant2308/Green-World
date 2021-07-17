@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react'
 import axios from 'axios';
-import {Redirect,useParams} from 'react-router-dom';
-function EditProduct() {
-    const id=useParams()
+import {Redirect} from 'react-router-dom';
+function EditProduct({ match}) {
+    const id=match.params.id;
     const [name,setName]=useState('')
     const [brand,setBrand]=useState('')
     const [price,setPrice]=useState('')
@@ -32,14 +32,14 @@ function EditProduct() {
     },[]);
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
+
         let form_data = new FormData();
         form_data.append('name', name);
         form_data.append('brand', brand);
         form_data.append('category', category);
         form_data.append('description', description);
         form_data.append('price', price);
-        let url = `${process.env.REACT_APP_BACKEND_URL}/api/product_actions/${id}`;
+        let url = `${process.env.REACT_APP_BACKEND_URL}/api/product_actions/${id}/`;
         let token=localStorage.getItem('token')
         axios.put(url, form_data, {
           headers: {

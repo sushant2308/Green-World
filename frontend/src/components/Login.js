@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import './sigin.css';
-import { login } from '../../features/userSlice'
+import { login } from '../features/userSlice'
 import { useDispatch } from 'react-redux'
 function Login() {
     const [email, setemail] = useState('')

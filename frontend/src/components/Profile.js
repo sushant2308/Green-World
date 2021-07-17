@@ -54,7 +54,7 @@ function Profile() {
                                             <div className="card-body-a">
                                                 <div className="price-box d-flex">
                                                 <span className="price-a">Price | Rs {item.price}</span>
-                                                <span className="price-a"><Link to={"/editproduct/"+item.id}>Edit
+                                                <span className="price-a"><Link to={"/editproduct/"+item.id} style={{color:"green"}}>Edit
                                                     </Link></span>
                                                 </div>
                                             </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { loginState,logout } from '../../features/userSlice'
+import { loginState,logout } from '../features/userSlice'
 import { useSelector,useDispatch } from 'react-redux'
 function Navbar() {
   const isloggedin= useSelector(loginState)

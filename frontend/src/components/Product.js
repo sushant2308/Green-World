@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
-import {Link,useParams} from 'react-router-dom';
-const Product=()=> {
-    const name=useParams();
+import {Link} from 'react-router-dom';
+const Product=({match})=> {
+    const name=match.params.id
     const [Data,setData] = useState({});
     const [brought,setbrought]=useState(false);
     useEffect(() => {
