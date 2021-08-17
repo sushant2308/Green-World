@@ -33,7 +33,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255)
     phone_no=models.CharField(max_length=255)
     address=models.CharField(max_length=1000)
-    is_seller=models.BooleanField(null=True,blank=True)
+    is_seller=models.BooleanField(default=False)
     gstid=models.CharField(max_length=255,null=True,blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect ,useState} from 'react';
 import {Link} from 'react-router-dom';
-import { loginState,logout } from '../features/userSlice'
-import { useSelector,useDispatch } from 'react-redux'
 function Navbar() {
-  const isloggedin= useSelector(loginState)
-  const dispatch= useDispatch();
+  const [isloggedin, setisloggedin] =useState(false)
+  useEffect(() => {
+
+        setInterval(() => {
+            if(localStorage.getItem('token')){
+              setisloggedin(true);
+            }
+            
+            }, [])
+    }, 3000);
+  console.log(localStorage.getItem('token'))
   function loggedout(){
       localStorage.removeItem('token');
-      dispatch(logout())
+      window.location.reload();
   }
     return (
         <div>

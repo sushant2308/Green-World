@@ -27,7 +27,7 @@ function Login() {
               dispatch(login())
               setredirect("/");
             })
-            .catch(err =>alert("Wrong email or password"))
+            .catch(err =>alert(err))
       };
 
         if (redirect) {
