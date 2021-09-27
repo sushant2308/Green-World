@@ -1,44 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# About The Project
+![alt text](https://i.ibb.co/pW12SCD/Screenshot-44.png)
+<br>
+<br>
+Green-World is an E-commerce web app in which a user can both sell as well as buy products. Since its a development project there is no payment gateway.
+Following are some of the features in this webapp:
 
-## Available Scripts
+* Authentication
+* Authorization
+* CRUD operations for product
+* Purchase History
 
-In the project directory, you can run:
+# Getting started
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Install [Node](https://nodejs.org/en/)
+* Install [Python](https://www.python.org/)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Setup
 
-### `npm test`
+```sh
+$ git clone https://github.com/sushant2308/Green-World.git
+$ cd Green-World
+```
+For backend
+```sh
+$ virtualenv2 --no-site-packages env
+$ source env/bin/activate
+(env)$ pip install -r requirements.txt
+(env)$ cd backend
+(env)$ python manage.py makemigrations
+(env)$ python manage.py migrate
+(env)$ python manage.py runserver
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+For Frontend
+```sh
+$ cd frontend
+$ npm install
+$ npm run
+```
 
-### `npm run build`
+# Code Overview
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Dependencies
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Django](https://docs.djangoproject.com/en/3.2/) - The server for handling and routing HTTP requests
+- [Django Rest Framework](https://www.django-rest-framework.org/) - Framework for creating REST Apis
+- [React](https://reactjs.org/) - Javascript Library for creating user interface
+- [Axios](https://github.com/axios/axios) - HTTP Client for making requests to backend server
+- [React-router](https://github.com/remix-run/react-router) - Routing for react App
